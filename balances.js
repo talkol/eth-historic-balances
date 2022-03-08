@@ -6,6 +6,7 @@ const web3 = new Web3(`https://eth-mainnet.alchemyapi.io/v2/FY6BwiO9_hzVN4N2Fx8T
 
 // TODO: change the Ethereum block number here if you want to check historic balances in a different date (see https://etherscan.io/blocks)
 const BlockNumber = 13916165; // this is the last block of 2021-12-31, mined on Dec-31-2021 11:59:49 PM +UTC
+const BalanceSnapshotTime = 'Dec-31-2021 11:59:49 PM +UTC';
 
 // abi
 const Erc20Abi = [{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
@@ -107,9 +108,9 @@ async function main() {
     process.exit(1);
   }
   // print csv header
-  console.log('Wallet,Block,Token Address,Token,Balance');
+  console.log('Wallet,Block,Balance Snapshot Time,Token Address,Token,Balance');
   // print ETH balance (special, not ERC20)
-  console.log(`${address},${BlockNumber},native,ETH,${await getEthBalance(address, BlockNumber)}`);
+  console.log(`${address},${BlockNumber},${BalanceSnapshotTime},native,ETH,${await getEthBalance(address, BlockNumber)}`);
   // go over all known tokens
   for (const token in Tokens) {
     const tokenAddress = Tokens[token];
@@ -118,7 +119,7 @@ async function main() {
     const balance = await getBalance(tokenContract, address, BlockNumber);
     // print token balance if non-zero
     if (balance > 0) {
-      console.log(`${address},${BlockNumber},${tokenAddress},${token},${balance}`);
+      console.log(`${address},${BlockNumber},${BalanceSnapshotTime},${tokenAddress},${token},${balance}`);
     }
   }
 }
