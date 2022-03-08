@@ -128,7 +128,7 @@ async function getEthBalance(address, block) {
   const decimalsNum = new BigNumber(`1e18`);
   const res = await web3.eth.getBalance(address, block);
   const resNum = new BigNumber(res).dividedBy(decimalsNum);
-  return resNum.toFormat(6).replace(',','');
+  return resNum.toFormat(6).replaceAll(',','');
 }
 
 async function getBalance(contract, address, block) {
@@ -136,7 +136,7 @@ async function getBalance(contract, address, block) {
   const decimalsNum = new BigNumber(`1e${decimals}`);
   const res = await contract.methods.balanceOf(address).call({}, block);
   const resNum = new BigNumber(res).dividedBy(decimalsNum);
-  return resNum.toFormat(6).replace(',','');
+  return resNum.toFormat(6).replaceAll(',','');
 }
 
 function sleep(ms) {
