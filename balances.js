@@ -5,8 +5,7 @@ const BigNumber = require('bignumber.js');
 const web3 = new Web3(`https://eth-mainnet.alchemyapi.io/v2/FY6BwiO9_hzVN4N2Fx8Ti-XXXXXXXXXX`);
 
 // TODO: change the Ethereum block number here if you want to check historic balances in a different date (see https://etherscan.io/blocks)
-const BlockNumber = 13909787; // this is the first block of 2021-12-31, mined on Dec-31-2021 12:00:00 AM +UTC
-  // 13916165; // this is the last block of 2021-12-31, mined on Dec-31-2021 11:59:49 PM +UTC
+const BlockNumber = 13916165; // this is the last block of 2021-12-31, mined on Dec-31-2021 11:59:49 PM +UTC
 
 // abi
 const Erc20Abi = [{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
