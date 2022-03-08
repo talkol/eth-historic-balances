@@ -114,9 +114,9 @@ async function main() {
   // go over all known tokens
   for (const token in Tokens) {
     const tokenAddress = Tokens[token];
-    const tokenContract = new web3.eth.Contract(Erc20Abi, tokenAddress, BigNumber);
+    const tokenContract = new web3.eth.Contract(Erc20Abi, tokenAddress);
     await sleep(85); // avoid Alchemy api throttling
-    const balance = await getBalance(tokenContract, address);
+    const balance = await getBalance(tokenContract, address, BlockNumber);
     // print token balance if non-zero
     if (balance > 0) {
       console.log(`${address},${BlockNumber},${tokenAddress},${token},${balance}`);
